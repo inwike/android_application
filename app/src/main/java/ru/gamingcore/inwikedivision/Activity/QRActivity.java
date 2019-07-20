@@ -51,6 +51,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import ru.gamingcore.inwikedivision.InfoActivity;
 import ru.gamingcore.inwikedivision.MyService;
 import ru.gamingcore.inwikedivision.PlanarYUVLuminanceSource;
 import ru.gamingcore.inwikedivision.R;
@@ -412,11 +413,18 @@ public class QRActivity extends AppCompatActivity {
         }
     }
 
+    private void startInfo() {
+        Intent intent = new Intent(this, InfoActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
     private ServerWork.ServerListener listener = new ServerWork.ServerListener() {
 
         @Override
         public void onFinished(JSONObject obj) {
-
+            service.jsonData.Parse(obj);
+            startInfo();
         }
 
         @Override

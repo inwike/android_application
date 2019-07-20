@@ -1,5 +1,7 @@
 package ru.gamingcore.inwikedivision;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -8,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JsonData {
+    private static final String TAG = "INWIKE";
 
     public String exec_name;
     public List<Build> builds;//=new Array
@@ -49,11 +52,11 @@ public class JsonData {
             }
 
 
-            JSONArray allowances = obj.getJSONArray("allowances");
+            JSONArray allowances = obj.getJSONArray("allowance");
             this.allowances = new ArrayList<>(allowances.length());
 
-            for (int i = 0; i < builds.length(); i++) {
-                JSONObject data = builds.getJSONObject(i);
+            for (int i = 0; i < allowances.length(); i++) {
+                JSONObject data = allowances.getJSONObject(i);
                 Allowance allowance = new Allowance();
                 allowance.name_allow = data.getString("name_allow");
                 allowance.start_date = data.getString("start_date");
@@ -61,7 +64,7 @@ public class JsonData {
             }
 
         } catch (JSONException e) {
-            e.printStackTrace();
+            Log.e(TAG,"JSONException "+e.getLocalizedMessage());
         }
 
 

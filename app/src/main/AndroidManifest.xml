@@ -17,9 +17,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".InfoActivity"></activity>
+
         <service
             android:name=".MyService"
-            android:exported="false"></service>
+            android:exported="false" />
 
         <activity android:name=".Activity.LogoActivity" />
         <activity android:name=".MainActivity" />
