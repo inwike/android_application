@@ -5,13 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AllowAdapter extends BaseAdapter {
+public class AllowsAdapter extends BaseAdapter {
     private static final String TAG ="INWIKE";
 
 
@@ -20,7 +19,7 @@ public class AllowAdapter extends BaseAdapter {
 
     public int current = 0;
 
-    public AllowAdapter(Activity activity) {
+    public AllowsAdapter(Activity activity) {
         inflater = activity.getLayoutInflater();
     }
 
@@ -42,18 +41,10 @@ public class AllowAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         if(view == null)
-            view = inflater.inflate(R.layout.list_row, viewGroup,false);
+            view = inflater.inflate(R.layout.list_row_allows, viewGroup,false);
 
-       /* TextView proj_name = view.findViewById(R.id.proj_name);
-        proj_name.setText(getItem(i).proj_name);
-
-        ImageView check = view.findViewById(R.id.check);
-
-        if(!getItem(i).check) {
-            check.setImageResource(R.drawable.red);
-        } else {
-            check.setImageResource(R.drawable.green);
-        }*/
+        TextView allow_name = view.findViewById(R.id.allow_name);
+        allow_name.setText(getItem(i).name_allow);
 
         return view;
     }

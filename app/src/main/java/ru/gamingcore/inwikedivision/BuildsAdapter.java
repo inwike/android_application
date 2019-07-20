@@ -5,33 +5,31 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProjAdapter extends BaseAdapter {
+public class BuildsAdapter extends BaseAdapter {
     private static final String TAG ="INWIKE";
 
-
-    public List<JsonData.Proj> projs = new ArrayList<>();
+    public List<JsonData.Build> builds = new ArrayList<>();
     private LayoutInflater inflater = null;
 
     public int current = 0;
 
-    public ProjAdapter(Activity activity) {
+    public BuildsAdapter(Activity activity) {
         inflater = activity.getLayoutInflater();
     }
 
     @Override
     public int getCount() {
-        return projs.size();
+        return builds.size();
     }
 
     @Override
-    public JsonData.Proj getItem(int i) {
-        return projs.get(i);
+    public JsonData.Build getItem(int i) {
+        return builds.get(i);
     }
 
     @Override
@@ -42,18 +40,10 @@ public class ProjAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         if(view == null)
-            view = inflater.inflate(R.layout.list_row_projs, viewGroup,false);
+            view = inflater.inflate(R.layout.list_row_builds, viewGroup,false);
 
-        TextView proj_name = view.findViewById(R.id.proj_name);
-        proj_name.setText(getItem(i).proj_name);
-
-        ImageView check = view.findViewById(R.id.check);
-
-        if(!getItem(i).check) {
-            check.setImageResource(R.drawable.red);
-        } else {
-            check.setImageResource(R.drawable.green);
-        }
+        TextView allow_name = view.findViewById(R.id.build_name);
+        allow_name.setText(getItem(i).name_builds);
 
         return view;
     }

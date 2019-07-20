@@ -87,15 +87,18 @@ public class JsonData {
                     proj.allowances.add(allowance);
                 }
 
-
                 JSONArray builds = data.getJSONArray("builds");
+
                 proj.builds = new ArrayList<>(builds.length());
 
                 for (int k = 0; k < builds.length(); k++) {
-                    JSONObject data3 = builds.getJSONObject(i);
+                    JSONObject data3 = builds.getJSONObject(k);
+
                     Build build = new Build();
+
                     build.address = data3.getString("address");
                     build.name_builds = data3.getString("name_builds");
+
                     build.geoloc = data3.getString("geoloc");
                     proj.builds.add(build);
                 }

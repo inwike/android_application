@@ -22,13 +22,6 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.Locale;
-
-import ru.gamingcore.inwikedivision.Activity.LogoActivity;
 import ru.gamingcore.inwikedivision.Activity.QRActivity;
 import ru.gamingcore.inwikedivision.Finger.FingerprintDialog;
 
@@ -43,13 +36,11 @@ public class MainActivity extends AppCompatActivity {
 
     private ServiceConnection sConn = new ServiceConnection() {
         public void onServiceConnected(ComponentName name, IBinder binder) {
-            Log.d(TAG, "MainActivity onServiceConnected");
             service = ((MyService.LocalBinder)binder).getService();
             //service.serverWork.setListener(listener);
         }
 
         public void onServiceDisconnected(ComponentName name) {
-            Log.d(TAG, "MainActivity onServiceDisconnected");
             service = null;
         }
     };
@@ -76,10 +67,11 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("MissingPermission")
     private void Init() {
         FingerprintDialog dialog = new FingerprintDialog();
+        dialog.setCancelable(false);
         getSupportFragmentManager().registerFragmentLifecycleCallbacks(new FragmentManager.FragmentLifecycleCallbacks() {
             @Override
             public void onFragmentViewDestroyed(FragmentManager fm, Fragment f) {
-                super.onFragmentViewDestroyed(fm, f);
+            super.onFragmentViewDestroyed(fm, f);
                 setContentView(R.layout.activity_main);
                 fm.unregisterFragmentLifecycleCallbacks(this);
             }
@@ -104,18 +96,22 @@ public class MainActivity extends AppCompatActivity {
     private class MyLocationListener implements LocationListener {
         @Override
         public void onLocationChanged(Location location) {
-            Geocoder gcd = new Geocoder(getBaseContext(), Locale.getDefault());
+            Log.e(TAG,"getLatitude "+location.getLatitude());
+            Log.e(TAG,"getLongitude "+location.getLongitude());
+
+           /* Geocoder gcd = new Geocoder(getBaseContext(), Locale.getDefault());
             try {
                 List<Address> addresses = gcd.getFromLocation(location.getLatitude(), location
                         .getLongitude(), 1);
 
                 if(addresses.size() > 0) {
+                    addresses.get(0).
                     //test(addresses.get(0).getLocality());
                 }
 
             } catch (IOException e) {
                 System.out.println(TAG+e.getLocalizedMessage());
-            }
+            }*/
             locationManager.removeUpdates(locationListener);
         }
 

@@ -1,9 +1,6 @@
 package ru.gamingcore.inwikedivision.Activity;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.ComponentName;
@@ -14,15 +11,10 @@ import android.os.IBinder;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
-
-import java.util.List;
 
 import ru.gamingcore.inwikedivision.MyService;
 import ru.gamingcore.inwikedivision.NonSwipeableViewPager;
-import ru.gamingcore.inwikedivision.ProjAdapter;
 import ru.gamingcore.inwikedivision.R;
 import ru.gamingcore.inwikedivision.ScreenSlidePagerAdapter;
 
@@ -52,16 +44,6 @@ public class InfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
 
-
-        /*projs.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-            }
-        });*/
-
-
-
         pager = findViewById(R.id.pager);
         pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         pager.setAdapter(pagerAdapter);
@@ -75,10 +57,11 @@ public class InfoActivity extends AppCompatActivity {
 
     AdapterView.OnItemClickListener listener = new AdapterView.OnItemClickListener() {
         @Override
-        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
             pager.postDelayed(new Runnable() {
                 @Override
                 public void run() {
+                    pagerAdapter.setPosition(i,pager.getCurrentItem() + 1);
                     pager.setCurrentItem(pager.getCurrentItem()+1,true);
                 }
             }, 10);
@@ -92,6 +75,11 @@ public class InfoActivity extends AppCompatActivity {
                 ListView projs = pager.findViewById(R.id.projs);
                 if(projs != null) {
                     projs.setOnItemClickListener(listener);
+                }
+            } else if(position == 1) {
+                ListView allows = pager.findViewById(R.id.allows);
+                if(allows != null) {
+                    allows.setOnItemClickListener(listener);
                 }
             }
         }

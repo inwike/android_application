@@ -2,7 +2,6 @@ package ru.gamingcore.inwikedivision;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,13 +14,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
-class AboutTab2 extends DialogFragment {
+class AboutTab3 extends DialogFragment {
 
     private static final String TAG = "INWIKE";
-    private AllowsAdapter allowsAdapter;
-    private BuildsAdapter buildsAdapter;
-
-
 
     public JsonData jsonData;
     public int position = 0;
@@ -30,42 +25,28 @@ class AboutTab2 extends DialogFragment {
     private TextView position_name;
     private TextView org_name;
     private TextView  proj_name;
-
+    private TextView  start_date;
+    private TextView  stop_date;
+    private TextView  allow_name;
 
     private ImageView Exec_foto;
-    private ImageView check;
-
-
-    private ListView allows;
-    private ListView builds;
-
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.about_page_2, container,false);
+        View v = inflater.inflate(R.layout.about_page_3, container,false);
         exec_name = v.findViewById(R.id.exec_name);
         position_name = v.findViewById(R.id.position_name);
         org_name = v.findViewById(R.id.org_name);
-        allows = v.findViewById(R.id.allows);
-        builds = v.findViewById(R.id.builds);
         Exec_foto = v.findViewById(R.id.Exec_foto);
         proj_name = v.findViewById(R.id.proj_name);
-        check = v.findViewById(R.id.check);
-
-        if(getActivity()!= null) {
-            allowsAdapter = new AllowsAdapter(getActivity());
-            buildsAdapter = new BuildsAdapter(getActivity());
-        }
+        start_date = v.findViewById(R.id.start_date);
+        stop_date = v.findViewById(R.id.stop_date);
+        allow_name = v.findViewById(R.id.allow_name);
 
         exec_name.setText(jsonData.exec_name);
-
-
         org_name.setText(jsonData.org_name);
         Exec_foto.setImageBitmap(jsonData.Exec_foto);
 
-
-        allows.setAdapter(allowsAdapter);
-        builds.setAdapter(buildsAdapter);
         return v;
     }
 
@@ -108,20 +89,13 @@ class AboutTab2 extends DialogFragment {
         super.onResume();
     }
 
-    public void setPosition(int position) {
-        this.position = position;
-        allowsAdapter.allows = jsonData.projs.get(position).allowances;
-        buildsAdapter.builds = jsonData.projs.get(position).builds;
-        buildsAdapter.notifyDataSetInvalidated();
-        allowsAdapter.notifyDataSetInvalidated();
+    public void setPosition(int proj_position,int allow_position) {
+        this.position = allow_position;
         position_name.setText(jsonData.position_name);
-        proj_name.setText(jsonData.projs.get(position).proj_name);
-
-        if(!jsonData.projs.get(position).check)
-            check.setImageResource(R.drawable.red);
-        else
-            check.setImageResource(R.drawable.green);
-
+        proj_name.setText(jsonData.projs.get(proj_position).proj_name);
+        allow_name.setText(jsonData.projs.get(proj_position).allowances.get(allow_position).name_allow);
+        start_date.setText(jsonData.projs.get(proj_position).allowances.get(allow_position).start_date);
+        stop_date.setText(jsonData.projs.get(proj_position).allowances.get(allow_position).stop_date);
     }
 
 }
