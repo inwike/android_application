@@ -28,7 +28,7 @@ public class ServerWork {
     }
 
     public interface ServerListener {
-        void onFinished();
+        void onFinished(JSONObject obj);
         void onError();
     }
 
@@ -58,13 +58,10 @@ public class ServerWork {
 
     private void onJson(String result) {
         try {
-            JSONArray array = new JSONArray(result);
-            JSONObject obj = array.getJSONObject(0);
-            Log.e(TAG,"recv = "+result);
-
+            JSONObject obj = new JSONObject(result);
             if (listener != null && !loaded) {
                 loaded = true;
-                listener.onFinished();
+                listener.onFinished(obj);
             }
         } catch (JSONException e) {
             started = false;

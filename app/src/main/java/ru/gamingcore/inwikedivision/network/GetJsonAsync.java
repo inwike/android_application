@@ -50,9 +50,11 @@ public  class GetJsonAsync extends AsyncTask<String,Void, String> {
                 os.write(data[4].getBytes(StandardCharsets.UTF_8));
                 connection.connect();
             }
+            Log.d(TAG, "pre read "+data[0].concat(data[1]));
 
             if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
                 // все ок
+                Log.d(TAG, "http ok");
             } else {
                 Log.d(TAG, "Error "+connection.getResponseCode());
                 if (listener != null) {
@@ -70,19 +72,18 @@ public  class GetJsonAsync extends AsyncTask<String,Void, String> {
             while ((line = in.readLine()) != null) {
                 answer = answer.concat(line);
             }
-
         }  catch (ProtocolException e) {
-            Log.d(TAG, "ProtocolException "+e.getLocalizedMessage());
+            Log.e(TAG, "ProtocolException "+e.getLocalizedMessage());
             if (listener != null) {
                 listener.onError();
             }
         } catch (MalformedURLException e) {
-            Log.d(TAG, "MalformedURLException "+e.getLocalizedMessage());
+            Log.e(TAG, "MalformedURLException "+e.getLocalizedMessage());
             if (listener != null) {
                 listener.onError();
             }
         } catch(IOException e) {
-            Log.d(TAG, "IOException "+e.getLocalizedMessage());
+            Log.e(TAG, "IOException "+e.getLocalizedMessage());
             if (listener != null) {
                 listener.onError();
             }

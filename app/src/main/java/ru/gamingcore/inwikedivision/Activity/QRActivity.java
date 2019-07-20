@@ -42,6 +42,8 @@ import com.google.zxing.Result;
 import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.qrcode.QRCodeReader;
 
+import org.json.JSONObject;
+
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -413,7 +415,7 @@ public class QRActivity extends AppCompatActivity {
     private ServerWork.ServerListener listener = new ServerWork.ServerListener() {
 
         @Override
-        public void onFinished() {
+        public void onFinished(JSONObject obj) {
 
         }
 
