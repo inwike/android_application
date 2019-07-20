@@ -1,8 +1,6 @@
 package ru.gamingcore.inwikedivision;
 
 import android.content.DialogInterface;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,32 +14,37 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
-class AboutTab extends androidx.fragment.app.DialogFragment {
+class AboutTab2 extends DialogFragment {
 
-    private ProjAdapter projAdapter;
+    private AllowAdapter allowAdapter;
 
     public JsonData jsonData;
+    public int position = 0;
 
     private TextView exec_name;
     private TextView position_name;
     private TextView org_name;
+    private TextView  proj_name;
+
 
     private ImageView Exec_foto;
 
-    private ListView projs;
+    private ListView allows;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.about_page, container,false);
+        View v = inflater.inflate(R.layout.about_page_2, container,false);
         exec_name = v.findViewById(R.id.exec_name);
         position_name = v.findViewById(R.id.position_name);
         org_name = v.findViewById(R.id.org_name);
-        projs = v.findViewById(R.id.projs);
+        allows = v.findViewById(R.id.allows);
         Exec_foto = v.findViewById(R.id.Exec_foto);
+        proj_name = v.findViewById(R.id.proj_name);
+
 
         if(getActivity()!= null) {
-            projAdapter = new ProjAdapter(getActivity());
+            allowAdapter = new AllowAdapter(getActivity());
         }
 
         exec_name.setText(jsonData.exec_name);
@@ -50,11 +53,12 @@ class AboutTab extends androidx.fragment.app.DialogFragment {
 
         org_name.setText(jsonData.org_name);
 
-        projAdapter.projs = jsonData.projs;
+        allowAdapter.allows = jsonData.projs.get(position).allowances;
 
         Exec_foto.setImageBitmap(jsonData.Exec_foto);
+        proj_name.setText(jsonData.projs.get(position).proj_name);
 
-        projs.setAdapter(projAdapter);
+        allows.setAdapter(allowAdapter);
 
         return v;
     }

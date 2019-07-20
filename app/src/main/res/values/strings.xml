@@ -6,5 +6,6 @@
     <string name="enter">Войти</string>
     <string name="qr">Считать QR</string>
     <string name="error">Добавить нарушение</string>
+    <string name="allows">Допуск к объектам</string>
 
 </resources>

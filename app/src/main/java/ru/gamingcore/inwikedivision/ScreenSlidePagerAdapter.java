@@ -6,12 +6,14 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 
 public class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
 
-    private DialogFragment[] fragments = new DialogFragment[1];
+    private DialogFragment[] fragments = new DialogFragment[2];
     private MyService service;
 
     public ScreenSlidePagerAdapter(FragmentManager fm) {
         super(fm);
         fragments[0] = new AboutTab();
+        fragments[1] = new AboutTab2();
+
         //fragments[1] = new AboutTab();
     }
 
@@ -27,5 +29,8 @@ public class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
 
     public void init(MyService service) {
         this.service = service;
+        ((AboutTab)fragments[0]).init(service);
+        ((AboutTab2)fragments[1]).init(service);
+
     }
 }
