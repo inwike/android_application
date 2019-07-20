@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/bg"
-    tools:context=".InfoActivity">
+    tools:context=".Activity.InfoActivity">
 
     <ImageView
         android:id="@+id/logo"
@@ -19,49 +19,9 @@
         android:layout_marginEnd="5dp"
         android:src="@drawable/inwike_logo" />
 
-    <ImageView
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/pager"
         android:layout_width="match_parent"
-        android:layout_height="290dp"
-        android:layout_gravity="top"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="50dp"
-        android:scaleType="centerInside"
-        android:src="@drawable/user"
-        android:contentDescription="@null" />
-
-    <TextView
-        android:id="@+id/exec_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/position_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/org_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <LinearLayout
-        android:layout_margin="10dp"
-        android:background="@drawable/border_background"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ListView
-            android:id="@+id/listView"
-            android:layout_margin="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fillViewport="true"
-            android:fastScrollEnabled="true"
-            android:divider="#b5b5b5"
-            android:dividerHeight="1dp"
-            android:listSelector="@drawable/listview_selector"  >
-        </ListView>
-
-    </LinearLayout>
+        android:layout_height="match_parent" />
 
 </LinearLayout>

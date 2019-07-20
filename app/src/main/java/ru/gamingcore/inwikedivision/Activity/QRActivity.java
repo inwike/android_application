@@ -29,6 +29,7 @@ import android.util.SparseIntArray;
 import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -50,12 +51,12 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
-import ru.gamingcore.inwikedivision.InfoActivity;
 import ru.gamingcore.inwikedivision.MyService;
 import ru.gamingcore.inwikedivision.PlanarYUVLuminanceSource;
 import ru.gamingcore.inwikedivision.R;
-import ru.gamingcore.inwikedivision.network.GetJsonAsync;
 import ru.gamingcore.inwikedivision.network.ServerWork;
 
 import static android.hardware.camera2.CameraCharacteristics.LENS_FACING;
@@ -92,6 +93,13 @@ public class QRActivity extends AppCompatActivity {
     private QRCodeReader mQrReader = new QRCodeReader();
     private ImageReader imageReader;
     private ProgressBar progressBar;
+
+
+    private ImageView imageView;
+
+    private Timer timer;
+    private TimerTask timerTask;
+
 
     final CameraCaptureSession.CaptureCallback captureListener = new CameraCaptureSession.CaptureCallback() {
         @Override
@@ -143,6 +151,7 @@ public class QRActivity extends AppCompatActivity {
         setContentView(R.layout.activity_qr);
         textureView = findViewById(R.id.texture);
         progressBar = findViewById(R.id.pb);
+        imageView = findViewById(R.id.border);
         Intent intent = new Intent(this, MyService.class);
         bindService(intent, sConn, BIND_AUTO_CREATE);
     }
@@ -423,8 +432,21 @@ public class QRActivity extends AppCompatActivity {
 
         @Override
         public void onFinished(JSONObject obj) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    imageView.setImageResource(R.drawable.border_green);
+                }
+            });
+            timer = new Timer();
+            timerTask = new TimerTask() {
+                @Override
+                public void run() {
+                    startInfo();
+                }
+            };
+            timer.schedule(timerTask, 200);
             service.jsonData.Parse(obj);
-            startInfo();
         }
 
         @Override
@@ -432,12 +454,18 @@ public class QRActivity extends AppCompatActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    if (progressBar != null && progressBar.getVisibility() != View.VISIBLE) {
-                        progressBar.setVisibility(View.GONE);
-                    }
-                    updatePreview();
+                    imageView.setImageResource(R.drawable.border_red);
                 }
             });
+            timer = new Timer();
+            timerTask = new TimerTask() {
+                @Override
+                public void run() {
+                    finish();
+                }
+            };
+
+            timer.schedule(timerTask, 1000);
         }
     };
 }

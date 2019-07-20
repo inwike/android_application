@@ -50,11 +50,9 @@ public  class GetJsonAsync extends AsyncTask<String,Void, String> {
                 os.write(data[4].getBytes(StandardCharsets.UTF_8));
                 connection.connect();
             }
-            Log.d(TAG, "pre read "+data[0].concat(data[1]));
 
             if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
                 // все ок
-                Log.d(TAG, "http ok");
             } else {
                 Log.d(TAG, "Error "+connection.getResponseCode());
                 if (listener != null) {

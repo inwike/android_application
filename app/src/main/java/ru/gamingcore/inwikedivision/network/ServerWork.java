@@ -58,16 +58,19 @@ public class ServerWork {
 
     private void onJson(String result) {
         try {
+            if(result == null) {
+                throw new JSONException("null string");
+            }
             JSONObject obj = new JSONObject(result);
             if (listener != null && !loaded) {
                 loaded = true;
                 listener.onFinished(obj);
             }
         } catch (JSONException e) {
-            started = false;
             if (listener != null) {
                 listener.onError();
             }
         }
+        started = false;
     }
 }
