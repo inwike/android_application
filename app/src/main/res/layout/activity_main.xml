@@ -22,12 +22,13 @@
         android:src="@drawable/inwike_logo" />
 
     <Button
+        android:layout_marginTop="200dp"
         android:id="@+id/read"
         android:onClick="onClick"
-        android:text="@string/qr"
+        android:background="@drawable/qr"
         android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="120dp"
+        android:layout_height="120dp" />
 
 
 </LinearLayout>
