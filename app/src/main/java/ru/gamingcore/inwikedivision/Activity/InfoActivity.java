@@ -6,17 +6,24 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
-import ru.gamingcore.inwikedivision.MyService;
-import ru.gamingcore.inwikedivision.NonSwipeableViewPager;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import ru.gamingcore.inwikedivision.Service.MyService;
+import ru.gamingcore.inwikedivision.Utils.NonSwipeableViewPager;
 import ru.gamingcore.inwikedivision.R;
-import ru.gamingcore.inwikedivision.ScreenSlidePagerAdapter;
+import ru.gamingcore.inwikedivision.Tabs.ScreenSlidePagerAdapter;
+import ru.gamingcore.inwikedivision.network.ServerWork;
 
 public class InfoActivity extends AppCompatActivity {
     private static final String TAG ="INWIKE";
@@ -30,7 +37,7 @@ public class InfoActivity extends AppCompatActivity {
             Log.d(TAG, "MainActivity onServiceConnected");
             service = ((MyService.LocalBinder)binder).getService();
             pagerAdapter.init(service);
-            //service.serverWork.setListener(listener);
+            service.serverWork.setListener(listner);
         }
 
         public void onServiceDisconnected(ComponentName name) {
@@ -81,6 +88,16 @@ public class InfoActivity extends AppCompatActivity {
                 if(allows != null) {
                     allows.setOnItemClickListener(listener);
                 }
+            } else if(position == 2) {
+                Button btn =  pager.findViewById(R.id.btn);
+                if(btn != null) {
+                    btn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            service.serverWork.getScan( pagerAdapter.getAllowID());
+                        }
+                    });
+                }
             }
         }
 
@@ -90,6 +107,33 @@ public class InfoActivity extends AppCompatActivity {
 
         @Override
         public void onPageScrollStateChanged(int state) {
+        }
+    };
+
+        private void startScan() {
+            Intent intent = new Intent(this, ScanActivity.class);
+            startActivity(intent);
+        }
+
+    private ServerWork.ServerListener listner = new ServerWork.ServerListener() {
+
+        @Override
+        public void onFinished(JSONObject obj) {
+            String Scan = null;
+            try {
+                Scan = obj.getString("Scan");
+                byte[] buf = Base64.decode(Scan,Base64.NO_WRAP);
+                service.serverWork.tempScan = BitmapFactory.decodeByteArray(buf, 0, buf.length);
+                startScan();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        @Override
+        public void onError() {
+            Log.e(TAG,"onError");
         }
     };
 }

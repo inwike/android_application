@@ -1,4 +1,4 @@
-package ru.gamingcore.inwikedivision;
+package ru.gamingcore.inwikedivision.Adapter;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -9,6 +9,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import ru.gamingcore.inwikedivision.Utils.JsonData;
+import ru.gamingcore.inwikedivision.R;
 
 public class BuildsAdapter extends BaseAdapter {
     private static final String TAG ="INWIKE";

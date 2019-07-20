@@ -1,4 +1,4 @@
-package ru.gamingcore.inwikedivision;
+package ru.gamingcore.inwikedivision.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,22 +8,20 @@ import androidx.fragment.app.FragmentManager;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
-import android.location.Address;
-import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 import android.view.View;
-import ru.gamingcore.inwikedivision.Activity.QRActivity;
+
 import ru.gamingcore.inwikedivision.Finger.FingerprintDialog;
+import ru.gamingcore.inwikedivision.Service.MyService;
+import ru.gamingcore.inwikedivision.R;
 
 public class MainActivity extends AppCompatActivity {
 

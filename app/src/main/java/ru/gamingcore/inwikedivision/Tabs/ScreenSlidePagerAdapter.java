@@ -1,8 +1,10 @@
-package ru.gamingcore.inwikedivision;
+package ru.gamingcore.inwikedivision.Tabs;
 
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
+
+import ru.gamingcore.inwikedivision.Service.MyService;
 
 public class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
 
@@ -45,5 +47,9 @@ public class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
             allow_position = position;
             ((AboutTab3) fragments[2]).setPosition(proj_position,position);
         }
+    }
+
+    public String getAllowID() {
+        return ((AboutTab3) fragments[2]).UID;
     }
 }

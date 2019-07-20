@@ -1,10 +1,11 @@
-package ru.gamingcore.inwikedivision;
+package ru.gamingcore.inwikedivision.Service;
 
 import android.app.Service;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
 
+import ru.gamingcore.inwikedivision.Utils.JsonData;
 import ru.gamingcore.inwikedivision.network.ServerWork;
 
 public class MyService extends Service {

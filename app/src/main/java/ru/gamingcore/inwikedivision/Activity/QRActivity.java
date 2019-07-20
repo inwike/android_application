@@ -54,8 +54,8 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import ru.gamingcore.inwikedivision.MyService;
-import ru.gamingcore.inwikedivision.PlanarYUVLuminanceSource;
+import ru.gamingcore.inwikedivision.Service.MyService;
+import ru.gamingcore.inwikedivision.Utils.PlanarYUVLuminanceSource;
 import ru.gamingcore.inwikedivision.R;
 import ru.gamingcore.inwikedivision.network.ServerWork;
 

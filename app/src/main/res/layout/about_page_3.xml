@@ -75,7 +75,7 @@
     <RelativeLayout
         android:layout_marginEnd="50dp"
         android:layout_marginStart="50dp"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="30dp"
@@ -84,15 +84,16 @@
         <TextView
             android:id="@+id/allow_name"
             android:gravity="center"
+            android:layout_marginEnd="50dp"
             android:textSize="20sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <ImageView
-            android:layout_toEndOf="@id/allow_name"
-            android:id="@+id/avail"
+            android:id="@+id/check2"
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
             android:src="@drawable/green"/>
     </RelativeLayout>
 
@@ -147,6 +148,7 @@
     </RelativeLayout>
 
     <Button
+        android:id="@+id/btn"
         android:text="@string/scan"
         android:layout_width="150dp"
         android:layout_gravity="center"
@@ -156,6 +158,10 @@
     <TextView
         android:id="@+id/red"
         android:visibility="gone"
+        android:textSize="30sp"
+        android:layout_gravity="center"
+        android:textColor="#FFffa500"
+        android:gravity="center"
         android:text="@string/not_avail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

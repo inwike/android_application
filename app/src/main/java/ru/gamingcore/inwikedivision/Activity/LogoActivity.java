@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-import ru.gamingcore.inwikedivision.MainActivity;
 import ru.gamingcore.inwikedivision.R;
 
 public class LogoActivity extends AppCompatActivity implements ViewPropertyAnimatorListener {

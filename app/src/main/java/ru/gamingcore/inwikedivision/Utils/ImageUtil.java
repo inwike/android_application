@@ -1,4 +1,4 @@
-package ru.gamingcore.inwikedivision;
+package ru.gamingcore.inwikedivision.Utils;
 
 
 import android.graphics.Bitmap;

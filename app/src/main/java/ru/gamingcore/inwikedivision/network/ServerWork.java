@@ -12,14 +12,18 @@ public class ServerWork {
     private static final String TAG = "INWIKE";
 
     private static final int GET_UID = 0;
+    private static final int GET_SCAN = 1;
+    public Bitmap tempScan;
+
 
     private boolean loaded = false;
     private boolean started = false;
 
     private static final String[] methods =
-            {"exec_data"};
+            {"exec_data","allow_scan"};
 
     private static final String UID = "?exec_uid=";
+    private  String current_uid;
 
     private ServerListener listener;
 
@@ -35,13 +39,22 @@ public class ServerWork {
     public void connect(String uid) {
         if(started)
             return;
-
+            current_uid = uid;
             String url = "http://192.168.1.35/Inwike/hs/Inwike/ID/";
             started = true;
 
             GetJsonAsync dataAsync = new GetJsonAsync();
             dataAsync.setListener(listner);
             dataAsync.execute(url,methods[GET_UID].concat(UID.concat(uid)),"web:web","GET");
+    }
+
+    public void getScan(String allow_id) {
+        String url = "http://192.168.1.35/Inwike/hs/Inwike/ID/";
+
+        GetJsonAsync dataAsync = new GetJsonAsync();
+        dataAsync.setListener(listner);
+        dataAsync.execute(url,methods[GET_SCAN].concat(UID.concat(current_uid).concat("&allow_id=".concat(allow_id))),"web:web","GET");
+
     }
 
     private GetJsonAsync.AsyncTaskListener listner = new GetJsonAsync.AsyncTaskListener() {
@@ -61,10 +74,12 @@ public class ServerWork {
             if(result == null) {
                 throw new JSONException("null string");
             }
+
             JSONObject obj = new JSONObject(result);
             if (listener != null && !loaded) {
                 loaded = true;
                 listener.onFinished(obj);
+                loaded = false;
             }
         } catch (JSONException e) {
             if (listener != null) {

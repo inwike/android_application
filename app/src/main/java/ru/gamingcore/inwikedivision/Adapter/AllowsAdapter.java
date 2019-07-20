@@ -1,4 +1,4 @@
-package ru.gamingcore.inwikedivision;
+package ru.gamingcore.inwikedivision.Adapter;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -11,27 +11,31 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProjAdapter extends BaseAdapter {
+import ru.gamingcore.inwikedivision.Utils.JsonData;
+import ru.gamingcore.inwikedivision.R;
+
+public class AllowsAdapter extends BaseAdapter {
     private static final String TAG ="INWIKE";
 
 
-    public List<JsonData.Proj> projs = new ArrayList<>();
+    public List<JsonData.Allowance> allows = new ArrayList<>();
     private LayoutInflater inflater = null;
+
 
     public int current = 0;
 
-    public ProjAdapter(Activity activity) {
+    public AllowsAdapter(Activity activity) {
         inflater = activity.getLayoutInflater();
     }
 
     @Override
     public int getCount() {
-        return projs.size();
+        return allows.size();
     }
 
     @Override
-    public JsonData.Proj getItem(int i) {
-        return projs.get(i);
+    public JsonData.Allowance getItem(int i) {
+        return allows.get(i);
     }
 
     @Override
@@ -42,18 +46,17 @@ public class ProjAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         if(view == null)
-            view = inflater.inflate(R.layout.list_row_projs, viewGroup,false);
+            view = inflater.inflate(R.layout.list_row_allows, viewGroup,false);
 
-        TextView proj_name = view.findViewById(R.id.proj_name);
-        proj_name.setText(getItem(i).proj_name);
+        TextView allow_name = view.findViewById(R.id.allow_name);
+        allow_name.setText(getItem(i).name_allow);
 
         ImageView check = view.findViewById(R.id.check);
 
-        if(!getItem(i).check) {
+        if(! getItem(i).check)
             check.setImageResource(R.drawable.red);
-        } else {
+        else
             check.setImageResource(R.drawable.green);
-        }
 
         return view;
     }

@@ -1,4 +1,4 @@
-package ru.gamingcore.inwikedivision;
+package ru.gamingcore.inwikedivision.Tabs;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -8,18 +8,22 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
+
+import ru.gamingcore.inwikedivision.Utils.JsonData;
+import ru.gamingcore.inwikedivision.R;
+import ru.gamingcore.inwikedivision.Service.MyService;
 
 class AboutTab3 extends DialogFragment {
 
     private static final String TAG = "INWIKE";
 
     public JsonData jsonData;
-    public int position = 0;
+    public String UID;
+
 
     private TextView exec_name;
     private TextView position_name;
@@ -31,7 +35,7 @@ class AboutTab3 extends DialogFragment {
 
     private ImageView Exec_foto;
     private ImageView check;
-    private ImageView avail;
+    private ImageView check2;
     private View green;
     private View red;
 
@@ -49,7 +53,7 @@ class AboutTab3 extends DialogFragment {
         stop_date = v.findViewById(R.id.stop_date);
         allow_name = v.findViewById(R.id.allow_name);
         check = v.findViewById(R.id.check);
-        avail = v.findViewById(R.id.avail);
+        check2 = v.findViewById(R.id.check2);
         red = v.findViewById(R.id.red);
         green = v.findViewById(R.id.green);
 
@@ -100,19 +104,28 @@ class AboutTab3 extends DialogFragment {
     }
 
     public void setPosition(int proj_position,int allow_position) {
-        this.position = allow_position;
         position_name.setText(jsonData.position_name);
         proj_name.setText(jsonData.projs.get(proj_position).proj_name);
-        allow_name.setText(jsonData.projs.get(proj_position).allowances.get(allow_position).name_allow);
-        start_date.setText(jsonData.projs.get(proj_position).allowances.get(allow_position).start_date);
-        stop_date.setText(jsonData.projs.get(proj_position).allowances.get(allow_position).stop_date);
 
+        JsonData.Allowance allowance = jsonData.projs.get(proj_position).allowances.get(allow_position);
+        allow_name.setText(allowance.name_allow);
+        start_date.setText(allowance.start_date);
+        stop_date.setText(allowance.stop_date);
+
+        UID = allowance.id_allow;
         if(!jsonData.projs.get(proj_position).check)
             check.setImageResource(R.drawable.red);
         else
             check.setImageResource(R.drawable.green);
 
-        if(!jsonData.projs.get(proj_position).allowances.get(allow_position).avail) {
+        if(!allowance.check) {
+            check2.setImageResource(R.drawable.red);
+        } else {
+            check2.setImageResource(R.drawable.green);
+
+        }
+
+        if(!allowance.avail) {
             red.setVisibility(View.VISIBLE);
             green.setVisibility(View.GONE);
         } else {

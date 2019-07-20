@@ -1,4 +1,4 @@
-package ru.gamingcore.inwikedivision;
+package ru.gamingcore.inwikedivision.Utils;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -38,7 +38,6 @@ public class JsonData {
         public String stop_date;
         public boolean check;
         public boolean avail;
-
     }
 
     public class Proj {
@@ -48,8 +47,6 @@ public class JsonData {
         public List<Build> builds;
         public boolean check;
     }
-
-
 
     public void Parse(JSONObject obj) {
         try {

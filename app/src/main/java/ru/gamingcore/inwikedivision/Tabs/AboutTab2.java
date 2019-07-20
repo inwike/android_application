@@ -1,8 +1,7 @@
-package ru.gamingcore.inwikedivision;
+package ru.gamingcore.inwikedivision.Tabs;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +14,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
+import ru.gamingcore.inwikedivision.Adapter.AllowsAdapter;
+import ru.gamingcore.inwikedivision.Adapter.BuildsAdapter;
+import ru.gamingcore.inwikedivision.Utils.JsonData;
+import ru.gamingcore.inwikedivision.R;
+import ru.gamingcore.inwikedivision.Service.MyService;
+
 class AboutTab2 extends DialogFragment {
 
     private static final String TAG = "INWIKE";
@@ -24,7 +29,6 @@ class AboutTab2 extends DialogFragment {
 
 
     public JsonData jsonData;
-    public int position = 0;
 
     private TextView exec_name;
     private TextView position_name;
@@ -109,7 +113,6 @@ class AboutTab2 extends DialogFragment {
     }
 
     public void setPosition(int position) {
-        this.position = position;
         allowsAdapter.allows = jsonData.projs.get(position).allowances;
         buildsAdapter.builds = jsonData.projs.get(position).builds;
         buildsAdapter.notifyDataSetInvalidated();

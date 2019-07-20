@@ -20,7 +20,7 @@ import androidx.core.hardware.fingerprint.FingerprintManagerCompat;
 import androidx.core.os.CancellationSignal;
 import androidx.fragment.app.DialogFragment;
 
-import ru.gamingcore.inwikedivision.MainActivity;
+import ru.gamingcore.inwikedivision.Activity.MainActivity;
 import ru.gamingcore.inwikedivision.R;
 
 public class FingerprintDialog extends DialogFragment implements DialogInterface.OnClickListener {
