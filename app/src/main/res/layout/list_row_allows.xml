@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/listview_selector"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:padding="5dip" >
 
     <!-- Title Of Song-->
@@ -16,5 +16,15 @@
         android:gravity="center"
         android:typeface="sans"
         android:textSize="15sp"
-        android:textStyle="bold"/>
-</LinearLayout>
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/avail"
+        android:layout_width="@dimen/flag"
+        android:layout_height="@dimen/flag"
+        android:src="@drawable/green"
+        android:layout_marginEnd="10dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true" />
+
+</RelativeLayout>

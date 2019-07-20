@@ -9,5 +9,7 @@
     <string name="allows">Допуск к объектам</string>
     <string name="start_date">Получен:</string>
     <string name="stop_date">Действителен до:</string>
+    <string name="not_avail">Допуск отсутствует!</string>
+    <string name="scan">Скан допуска</string>
 
 </resources>

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public class AllowsAdapter extends BaseAdapter {
 
     public List<JsonData.Allowance> allows = new ArrayList<>();
     private LayoutInflater inflater = null;
+
 
     public int current = 0;
 
@@ -45,6 +47,13 @@ public class AllowsAdapter extends BaseAdapter {
 
         TextView allow_name = view.findViewById(R.id.allow_name);
         allow_name.setText(getItem(i).name_allow);
+
+        ImageView avail = view.findViewById(R.id.avail);
+
+        if(! getItem(i).avail)
+            avail.setImageResource(R.drawable.red);
+        else
+            avail.setImageResource(R.drawable.green);
 
         return view;
     }

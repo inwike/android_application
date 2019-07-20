@@ -27,7 +27,8 @@ public class JsonData {
     public class Build {
         public String name_builds;
         public String address;
-        public String geoloc;
+        public String latitude;
+        public String longitude;
     }
 
     public class Allowance {
@@ -99,7 +100,8 @@ public class JsonData {
                     build.address = data3.getString("address");
                     build.name_builds = data3.getString("name_builds");
 
-                    build.geoloc = data3.getString("geoloc");
+                    build.latitude = data3.getString("latitude");
+                    build.longitude = data3.getString("longitude");
                     proj.builds.add(build);
                 }
                 this.projs.add(proj);

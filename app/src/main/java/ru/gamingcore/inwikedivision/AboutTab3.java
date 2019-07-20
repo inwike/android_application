@@ -30,6 +30,12 @@ class AboutTab3 extends DialogFragment {
     private TextView  allow_name;
 
     private ImageView Exec_foto;
+    private ImageView check;
+    private ImageView avail;
+    private View green;
+    private View red;
+
+
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -42,6 +48,10 @@ class AboutTab3 extends DialogFragment {
         start_date = v.findViewById(R.id.start_date);
         stop_date = v.findViewById(R.id.stop_date);
         allow_name = v.findViewById(R.id.allow_name);
+        check = v.findViewById(R.id.check);
+        avail = v.findViewById(R.id.avail);
+        red = v.findViewById(R.id.red);
+        green = v.findViewById(R.id.green);
 
         exec_name.setText(jsonData.exec_name);
         org_name.setText(jsonData.org_name);
@@ -96,6 +106,19 @@ class AboutTab3 extends DialogFragment {
         allow_name.setText(jsonData.projs.get(proj_position).allowances.get(allow_position).name_allow);
         start_date.setText(jsonData.projs.get(proj_position).allowances.get(allow_position).start_date);
         stop_date.setText(jsonData.projs.get(proj_position).allowances.get(allow_position).stop_date);
+
+        if(!jsonData.projs.get(proj_position).check)
+            check.setImageResource(R.drawable.red);
+        else
+            check.setImageResource(R.drawable.green);
+
+        if(!jsonData.projs.get(proj_position).allowances.get(allow_position).avail) {
+            red.setVisibility(View.VISIBLE);
+            green.setVisibility(View.GONE);
+        } else {
+            green.setVisibility(View.VISIBLE);
+            red.setVisibility(View.GONE);
+        }
     }
 
 }

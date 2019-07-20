@@ -48,19 +48,59 @@
         </LinearLayout>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/proj_name"
-        android:gravity="center"
-        android:textSize="22sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    <RelativeLayout
+        android:layout_marginEnd="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="30dp"
+        android:orientation="horizontal" >
 
-    <TextView
-        android:id="@+id/allow_name"
-        android:gravity="center"
-        android:textSize="20sp"
+        <TextView
+            android:id="@+id/proj_name"
+            android:gravity="center"
+            android:textSize="22sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_toEndOf="@id/proj_name"
+            android:id="@+id/check"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/green"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginEnd="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="30dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/allow_name"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_toEndOf="@id/allow_name"
+            android:id="@+id/avail"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/green"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/green"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -105,10 +145,19 @@
             android:textSize="16sp" />
 
     </RelativeLayout>
+
     <Button
-        android:text="Скан допуска"
+        android:text="@string/scan"
         android:layout_width="150dp"
         android:layout_gravity="center"
         android:layout_height="70dp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/red"
+        android:visibility="gone"
+        android:text="@string/not_avail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

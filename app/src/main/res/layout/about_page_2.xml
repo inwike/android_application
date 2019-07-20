@@ -51,7 +51,7 @@
     <RelativeLayout
         android:layout_marginEnd="50dp"
         android:layout_marginStart="50dp"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="30dp"
@@ -65,10 +65,10 @@
             android:layout_height="wrap_content" />
 
         <ImageView
+            android:layout_toEndOf="@id/proj_name"
             android:id="@+id/check"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_alignParentEnd="true"
             android:src="@drawable/green"/>
     </RelativeLayout>
 
