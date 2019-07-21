@@ -104,6 +104,7 @@
     </ListView>
 
     <Button
+        android:id="@+id/btn"
         android:text="@string/rating"
         android:background="@android:drawable/btn_default"
         android:layout_marginEnd="20dp"

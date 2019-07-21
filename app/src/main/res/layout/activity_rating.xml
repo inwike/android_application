@@ -1,8 +1,323 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:orientation="vertical"
+
     tools:context=".Activity.RatingActivity">
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:scaleType="fitXY"
+        android:layout_gravity="top"
+        android:contentDescription="@null"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="5dp"
+        android:src="@drawable/inwike_logo" />
+
+    <TextView
+        android:id="@+id/a1"
+        android:layout_below="@id/logo"
+        android:text="@string/star"
+        android:textSize="25sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/a1"
+        android:text="Proj name"
+        android:id="@+id/proj_name"
+        android:textSize="25sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/a2"
+        android:layout_below="@id/proj_name"
+        android:text="@string/ciz"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <RatingBar
+        android:id="@+id/rating1"
+        android:layout_below="@id/proj_name"
+        android:numStars="3"
+        android:layout_marginTop="-10dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="-20dp"
+        android:scaleX="0.7"
+        android:scaleY="0.7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+        android:id="@+id/a3"
+        android:layout_below="@id/a2"
+        android:text="@string/work"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <RatingBar
+        android:id="@+id/rating2"
+        android:layout_below="@id/a2"
+        android:numStars="3"
+        android:layout_marginTop="-10dp"
+        android:layout_marginEnd="-20dp"
+        android:layout_alignParentEnd="true"
+        android:scaleX="0.7"
+        android:scaleY="0.7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/a4"
+        android:layout_below="@id/a3"
+        android:text="@string/time"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <RatingBar
+        android:id="@+id/rating3"
+        android:layout_below="@id/a3"
+        android:numStars="3"
+        android:layout_marginTop="-10dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="-20dp"
+        android:scaleX="0.7"
+        android:scaleY="0.7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/a5"
+        android:layout_below="@id/a4"
+        android:text="@string/team"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <RatingBar
+        android:id="@+id/rating4"
+        android:layout_below="@id/a4"
+        android:layout_marginEnd="-20dp"
+        android:numStars="3"
+        android:layout_marginTop="-10dp"
+        android:layout_alignParentEnd="true"
+        android:scaleX="0.7"
+        android:scaleY="0.7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/a6"
+        android:layout_below="@id/a5"
+        android:text="@string/gc"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <RatingBar
+        android:id="@+id/rating5"
+        android:layout_below="@id/a5"
+        android:numStars="3"
+        android:layout_marginTop="-10dp"
+        android:layout_marginEnd="-20dp"
+        android:layout_alignParentEnd="true"
+        android:scaleX="0.7"
+        android:scaleY="0.7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/a7"
+        android:layout_below="@id/a6"
+        android:text="@string/head"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <RatingBar
+        android:id="@+id/rating6"
+        android:layout_below="@id/a6"
+        android:numStars="3"
+        android:layout_marginTop="-10dp"
+        android:layout_marginEnd="-20dp"
+        android:layout_alignParentEnd="true"
+        android:scaleX="0.7"
+        android:scaleY="0.7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/a8"
+        android:layout_below="@id/a7"
+        android:text="@string/allow"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <RatingBar
+        android:id="@+id/rating7"
+        android:layout_below="@id/a7"
+        android:numStars="3"
+        android:layout_marginTop="-10dp"
+        android:layout_alignParentEnd="true"
+        android:scaleX="0.7"
+        android:scaleY="0.7"
+        android:layout_marginEnd="-20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/a9"
+        android:layout_below="@id/a8"
+        android:layout_marginTop="30dp"
+        android:text="@string/star2"
+        android:textSize="25sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/a10"
+        android:layout_below="@id/a9"
+        android:text="@string/ciz"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <RatingBar
+        android:id="@+id/rating8"
+        android:layout_below="@id/a9"
+        android:numStars="3"
+        android:layout_marginTop="-10dp"
+        android:layout_alignParentEnd="true"
+        android:scaleX="0.7"
+        android:scaleY="0.7"
+        android:layout_marginEnd="-20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/a11"
+        android:layout_below="@id/a10"
+        android:text="@string/docs"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <RatingBar
+        android:id="@+id/rating9"
+        android:layout_below="@id/a10"
+        android:numStars="3"
+        android:layout_marginTop="-10dp"
+        android:layout_alignParentEnd="true"
+        android:scaleX="0.7"
+        android:scaleY="0.7"
+        android:layout_marginEnd="-20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/a12"
+        android:layout_below="@id/a11"
+        android:text="@string/quality"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <RatingBar
+        android:id="@+id/rating10"
+        android:layout_below="@id/a11"
+        android:numStars="3"
+        android:layout_marginTop="-10dp"
+        android:layout_alignParentEnd="true"
+        android:scaleX="0.7"
+        android:scaleY="0.7"
+        android:layout_marginEnd="-20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/a13"
+        android:layout_below="@id/a12"
+        android:text="@string/work2"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <RatingBar
+        android:id="@+id/rating11"
+        android:layout_below="@id/a12"
+        android:numStars="3"
+        android:layout_marginTop="-10dp"
+        android:layout_alignParentEnd="true"
+        android:scaleX="0.7"
+        android:scaleY="0.7"
+        android:layout_marginEnd="-20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/a14"
+        android:layout_below="@id/a13"
+        android:text="@string/instr"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <RatingBar
+        android:id="@+id/rating12"
+        android:layout_below="@id/a13"
+        android:numStars="3"
+        android:layout_marginTop="-10dp"
+        android:layout_alignParentEnd="true"
+        android:scaleX="0.7"
+        android:scaleY="0.7"
+        android:layout_marginEnd="-20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:text="@string/save"
+        android:background="@android:drawable/btn_default"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+</RelativeLayout>

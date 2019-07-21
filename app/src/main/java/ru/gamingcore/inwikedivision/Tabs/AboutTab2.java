@@ -1,12 +1,14 @@
 package ru.gamingcore.inwikedivision.Tabs;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -14,6 +16,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
+import ru.gamingcore.inwikedivision.Activity.QRActivity;
+import ru.gamingcore.inwikedivision.Activity.RatingActivity;
 import ru.gamingcore.inwikedivision.Adapter.AllowsAdapter;
 import ru.gamingcore.inwikedivision.Adapter.BuildsAdapter;
 import ru.gamingcore.inwikedivision.Utils.JsonData;
@@ -55,6 +59,18 @@ class AboutTab2 extends DialogFragment {
         Exec_foto = v.findViewById(R.id.Exec_foto);
         proj_name = v.findViewById(R.id.proj_name);
         check = v.findViewById(R.id.check);
+
+        Button btn = v.findViewById(R.id.btn);
+        if(btn!= null ) {
+           btn.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View view) {
+                   Intent intent = new Intent(getContext(), RatingActivity.class);
+                   startActivity(intent);
+               }
+           });
+        }
+
 
         if(getContext()!= null) {
             allowsAdapter = new AllowsAdapter(getContext());

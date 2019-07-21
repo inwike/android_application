@@ -432,6 +432,8 @@ public class QRActivity extends AppCompatActivity {
 
         @Override
         public void onFinished(JSONObject obj) {
+            Log.e(TAG,"onFinished");
+
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {

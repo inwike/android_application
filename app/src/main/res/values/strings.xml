@@ -17,5 +17,19 @@
     <string name="list_proj">Проекты</string>
     <string name="submit">Добавить</string>
     <string name="rating">Рейтинг</string>
+    <string name="star">Оценка по проекту</string>
+    <string name="ciz">Использование СИЗ</string>
+    <string name="work">Качество работ</string>
+    <string name="time">Следование срокам</string>
+    <string name="team">Наличие проекта в бригаде</string>
+    <string name="gc">Отсутствие мусора на участке</string>
+    <string name="head">Наличие бригадира</string>
+    <string name="allow">Допуск персонала</string>
+    <string name="star2">Оценка по работнику</string>
+    <string name="docs">Наличие удостоверений</string>
+    <string name="quality">Качество работ</string>
+    <string name="work2">Трудовая дисциплина</string>
+    <string name="instr">Следование инструкциям</string>
+    <string name="save">Сохранить</string>
 
 </resources>
