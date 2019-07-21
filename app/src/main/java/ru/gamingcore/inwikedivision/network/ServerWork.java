@@ -2,10 +2,6 @@ package ru.gamingcore.inwikedivision.network;
 
 import android.graphics.Bitmap;
 import android.os.Build;
-import android.util.Log;
-import android.widget.Toast;
-
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 

@@ -133,6 +133,7 @@ public class JsonData {
                         build.active = true;
                         proj.active = true;
                         proj.activeBuilds.add(build);
+                    } else {
                     }
 
                     proj.builds.add(build);

@@ -136,4 +136,14 @@ public class InfoActivity extends AppCompatActivity {
             Log.e(TAG,"onError");
         }
     };
+
+
+    @Override
+    public void onBackPressed() {
+        if(pager.getCurrentItem() == 0)
+        super.onBackPressed();
+        else {
+            pager.setCurrentItem(pager.getCurrentItem()-1,true);
+        }
+    }
 }

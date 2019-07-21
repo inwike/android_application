@@ -43,9 +43,10 @@ public class ViolationFragment extends DialogFragment implements OnClickListener
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        getDialog().setTitle("tittle");
+        getDialog().setTitle("");
         View v = inflater.inflate(R.layout.violation_fragment, container,false);
         v.findViewById(R.id.save).setOnClickListener(this);
+
         vSpinner = v.findViewById(R.id.vSpinner);
         pSpinner = v.findViewById(R.id.pSpinner);
         bSpinner = v.findViewById(R.id.bSpinner);
@@ -62,21 +63,13 @@ public class ViolationFragment extends DialogFragment implements OnClickListener
 
         pAdapter.projs = service.jsonData.activeProjs;
 
+        if(pAdapter.projs .size() > 0)
+            bAdapter.builds = pAdapter.projs.get(0).activeBuilds;
+
         vSpinner.setAdapter(vAdapter);
         pSpinner.setAdapter(pAdapter);
         bSpinner.setAdapter(bAdapter);
 
-        pSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                bAdapter.builds = service.jsonData.activeProjs.get(i).activeBuilds;
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
         return v;
     }
 
