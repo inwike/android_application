@@ -22,7 +22,7 @@ class AboutTab3 extends DialogFragment {
     private static final String TAG = "INWIKE";
 
     public JsonData jsonData;
-    public String UID;
+    public String id_allow;
 
 
     private TextView exec_name;
@@ -112,17 +112,20 @@ class AboutTab3 extends DialogFragment {
         start_date.setText(allowance.start_date);
         stop_date.setText(allowance.stop_date);
 
-        UID = allowance.id_allow;
+        id_allow = allowance.id_allow;
+
         if(!jsonData.projs.get(proj_position).check)
             check.setImageResource(R.drawable.red);
         else
             check.setImageResource(R.drawable.green);
 
+
+
         if(!allowance.check) {
             check2.setImageResource(R.drawable.red);
         } else {
             check2.setImageResource(R.drawable.green);
-
+            stop_date.setTextColor(0xFFFF0000);
         }
 
         if(!allowance.avail) {

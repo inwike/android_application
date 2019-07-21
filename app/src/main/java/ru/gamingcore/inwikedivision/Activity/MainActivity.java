@@ -35,7 +35,17 @@ public class MainActivity extends AppCompatActivity {
     private ServiceConnection sConn = new ServiceConnection() {
         public void onServiceConnected(ComponentName name, IBinder binder) {
             service = ((MyService.LocalBinder)binder).getService();
-            //service.serverWork.setListener(listener);
+            if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(
+                        new String[] {
+                                Manifest.permission.ACCESS_FINE_LOCATION,
+                                Manifest.permission.ACCESS_COARSE_LOCATION
+                        },
+                        PERMISSION_REQUEST_CODE);
+                return;
+            }
+
+            Init();
         }
 
         public void onServiceDisconnected(ComponentName name) {
@@ -49,17 +59,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.clear_layout);
 
-        if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(
-                    new String[] {
-                            Manifest.permission.ACCESS_FINE_LOCATION,
-                            Manifest.permission.ACCESS_COARSE_LOCATION
-                    },
-                    PERMISSION_REQUEST_CODE);
-            return;
-        }
-
-        Init();
+        Intent intent = new Intent(this, MyService.class);
+        bindService(intent, sConn, BIND_AUTO_CREATE);
     }
 
     @SuppressLint("MissingPermission")
@@ -80,10 +81,7 @@ public class MainActivity extends AppCompatActivity {
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         locationListener = new MyLocationListener();
         locationManager.requestLocationUpdates(LocationManager
-                .NETWORK_PROVIDER, 5000, 0, locationListener);
-
-        Intent intent = new Intent(this, MyService.class);
-        bindService(intent, sConn, BIND_AUTO_CREATE);
+                .NETWORK_PROVIDER, 50000, 500, locationListener);
     }
 
     public void onClick(View view) {
@@ -94,23 +92,8 @@ public class MainActivity extends AppCompatActivity {
     private class MyLocationListener implements LocationListener {
         @Override
         public void onLocationChanged(Location location) {
-            Log.e(TAG,"getLatitude "+location.getLatitude());
-            Log.e(TAG,"getLongitude "+location.getLongitude());
-
-           /* Geocoder gcd = new Geocoder(getBaseContext(), Locale.getDefault());
-            try {
-                List<Address> addresses = gcd.getFromLocation(location.getLatitude(), location
-                        .getLongitude(), 1);
-
-                if(addresses.size() > 0) {
-                    addresses.get(0).
-                    //test(addresses.get(0).getLocality());
-                }
-
-            } catch (IOException e) {
-                System.out.println(TAG+e.getLocalizedMessage());
-            }*/
-            locationManager.removeUpdates(locationListener);
+            service.jsonData.Latitude = location.getLatitude();
+            service.jsonData.Longitude = location.getLongitude();
         }
 
         @Override

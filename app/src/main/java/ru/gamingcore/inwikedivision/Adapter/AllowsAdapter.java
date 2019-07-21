@@ -51,12 +51,13 @@ public class AllowsAdapter extends BaseAdapter {
         TextView allow_name = view.findViewById(R.id.allow_name);
         allow_name.setText(getItem(i).name_allow);
 
-        ImageView check = view.findViewById(R.id.check);
-
-        if(! getItem(i).check)
-            check.setImageResource(R.drawable.red);
-        else
-            check.setImageResource(R.drawable.green);
+        ImageView check = view.findViewById(R.id.allow_check);
+        if(check != null) {
+            if (!getItem(i).check)
+                check.setImageResource(R.drawable.red);
+            else
+                check.setImageResource(R.drawable.green);
+        }
 
         return view;
     }

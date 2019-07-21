@@ -12,6 +12,7 @@ public class MyService extends Service {
     private final LocalBinder localBinder = new LocalBinder();
     public JsonData jsonData = new JsonData();
 
+
     public class LocalBinder extends Binder {
         public MyService getService() {
             return MyService.this;

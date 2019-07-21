@@ -50,6 +50,6 @@ public class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
     }
 
     public String getAllowID() {
-        return ((AboutTab3) fragments[2]).UID;
+        return ((AboutTab3) fragments[2]).id_allow;
     }
 }

@@ -19,7 +19,7 @@
         android:textStyle="bold" />
 
     <ImageView
-        android:id="@+id/check"
+        android:id="@+id/allow_check"
         android:layout_width="@dimen/flag"
         android:layout_height="@dimen/flag"
         android:src="@drawable/green"

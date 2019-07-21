@@ -1,6 +1,7 @@
 package ru.gamingcore.inwikedivision.Adapter;
 
 import android.app.Activity;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,11 +19,13 @@ public class BuildsAdapter extends BaseAdapter {
 
     public List<JsonData.Build> builds = new ArrayList<>();
     private LayoutInflater inflater = null;
+    private Drawable listview_selector;
 
     public int current = 0;
 
     public BuildsAdapter(Activity activity) {
         inflater = activity.getLayoutInflater();
+        listview_selector = activity.getDrawable(R.drawable.listview_selector);
     }
 
     @Override
@@ -47,6 +50,12 @@ public class BuildsAdapter extends BaseAdapter {
 
         TextView allow_name = view.findViewById(R.id.build_name);
         allow_name.setText(getItem(i).name_builds);
+
+        if(getItem(i).active) {
+            view.setBackgroundColor(0xFFF0E68C);
+        } else {
+            view.setBackground(listview_selector);
+        }
 
         return view;
     }

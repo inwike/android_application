@@ -147,12 +147,19 @@
 
     </RelativeLayout>
 
-    <Button
-        android:id="@+id/btn"
-        android:text="@string/scan"
-        android:layout_width="150dp"
-        android:layout_gravity="center"
-        android:layout_height="70dp" />
+
+
+        <Button
+            android:id="@+id/btn"
+            android:text="@string/scan"
+            android:layout_marginTop="100dp"
+            android:onClick="onClick"
+            android:textColor="@android:color/white"
+            android:background="@drawable/error"
+            android:layout_gravity="center"
+            android:layout_width="120dp"
+            android:layout_height="120dp" />
+
     </LinearLayout>
 
     <TextView

@@ -14,6 +14,9 @@ import java.util.List;
 
 public class JsonData {
     private static final String TAG = "INWIKE";
+    public double Latitude = 0;
+    public double Longitude = 0;
+
 
     public String exec_name;
     public String position_name;
@@ -29,6 +32,8 @@ public class JsonData {
         public String address;
         public String latitude;
         public String longitude;
+
+        public boolean active = false; //
     }
 
     public class Allowance {
@@ -99,6 +104,23 @@ public class JsonData {
 
                     build.latitude = data3.getString("latitude");
                     build.longitude = data3.getString("longitude");
+
+                    double lat = Double.valueOf(build.latitude);
+                    double lon = Double.valueOf(build.longitude);
+
+                    lat = Math.abs(lat - Latitude);
+                    lon = Math.abs(lon - Longitude);
+
+                    Log.e(TAG,"Latitude = "+Latitude+" Longitude = "+Longitude);
+                    Log.e(TAG,"lat = "+lat+" lon = "+lon);
+
+
+                    if(lat <= 10 && lon <= 10) {
+                        build.active = true;
+                    }
+
+
+
                     proj.builds.add(build);
                 }
                 this.projs.add(proj);
