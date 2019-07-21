@@ -147,10 +147,9 @@
 
     </RelativeLayout>
         <Button
-            android:id="@+id/btn"
+            android:id="@+id/btn2"
             android:text="@string/scan"
             android:layout_marginTop="100dp"
-            android:onClick="onClick"
             android:textColor="@android:color/white"
             android:background="@drawable/error"
             android:layout_gravity="center"

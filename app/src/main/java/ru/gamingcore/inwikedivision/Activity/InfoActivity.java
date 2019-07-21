@@ -89,7 +89,7 @@ public class InfoActivity extends AppCompatActivity {
                     allows.setOnItemClickListener(listener);
                 }
             } else if(position == 2) {
-                Button btn =  pager.findViewById(R.id.btn);
+                Button btn =  pager.findViewById(R.id.btn2);
                 if(btn != null) {
                     btn.setOnClickListener(new View.OnClickListener() {
                         @Override
