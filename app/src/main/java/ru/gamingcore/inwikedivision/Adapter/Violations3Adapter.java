@@ -16,7 +16,6 @@ public class Violations3Adapter extends BaseAdapter {
     private static final String TAG = "INWIKE";
     private LayoutInflater inflater;
 
-
     public List<JsonData.Build> builds = new ArrayList<>();
 
     public Violations3Adapter(Context context) {
@@ -43,6 +42,7 @@ public class Violations3Adapter extends BaseAdapter {
         if (convertview == null) {
             convertview = inflater.inflate(android.R.layout.simple_spinner_item, null);
         }
+
         TextView tv = (TextView) convertview;
         tv.setText(builds.get(i).name_builds);
         return convertview;

@@ -23,7 +23,7 @@ class AboutTab extends androidx.fragment.app.DialogFragment {
 
     private ProjAdapter projAdapter;
 
-    public JsonData jsonData;
+    public MyService service;
 
     private TextView exec_name;
     private TextView position_name;
@@ -48,15 +48,15 @@ class AboutTab extends androidx.fragment.app.DialogFragment {
         }
 
 
-        exec_name.setText(jsonData.exec_name);
+        exec_name.setText(service.jsonData.exec_name);
 
-        position_name.setText(jsonData.position_name);
+        position_name.setText(service.jsonData.position_name);
 
-        org_name.setText(jsonData.org_name);
+        org_name.setText(service.jsonData.org_name);
 
-        projAdapter.projs = jsonData.projs;
+        projAdapter.projs = service.jsonData.projs;
 
-        Exec_foto.setImageBitmap(jsonData.Exec_foto);
+        Exec_foto.setImageBitmap(service.jsonData.Exec_foto);
 
         projs.setAdapter(projAdapter);
 
@@ -72,7 +72,8 @@ class AboutTab extends androidx.fragment.app.DialogFragment {
     }
 
     public void init(MyService service) {
-        this.jsonData = service.jsonData;
+
+        this.service = service;
     }
 
     public void onCancel(DialogInterface dialog) {

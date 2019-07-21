@@ -18,51 +18,53 @@ public class JsonData {
     public double Latitude = 0;
     public double Longitude = 0;
 
-    public List<Violation> violations;
+    public List<Violation> violations = new ArrayList<>();
 
-
-    public String exec_name;
-    public String position_name;
-    public String exec_foto;
-    public String org_name;
-    public List<Proj> projs;
+    public String exec_name = "";
+    public String position_name = "";
+    public String exec_foto = "";
+    public String org_name = "";
+    public List<Proj> projs = new ArrayList<>();
+    public List<Proj> activeProjs = new ArrayList<>();
 
 
     public Bitmap Exec_foto = null;
 
 
     public class Build {
-        public String id_builds;
-        public String name_builds;
-        public String address;
-        public String latitude;
-        public String longitude;
+        public String id_builds = "";
+        public String name_builds = "";
+        public String address = "";
+        public String latitude = "";
+        public String longitude = "";
 
         public boolean active = false; //
     }
 
     public class Allowance {
-        public String id_allow;
-        public String name_allow;
-        public String start_date;
-        public String stop_date;
+        public String id_allow = "";
+        public String name_allow = "";
+        public String start_date = "";
+        public String stop_date = "";
         public boolean check;
         public boolean avail;
     }
 
     public class Proj {
-        public String proj_id;
-        public String proj_name;
-        public List<Allowance> allowances;
-        public List<Build> builds;
+        public String proj_id = "";
+        public String proj_name = "";
+        public List<Allowance> allowances = new ArrayList<>();
+        public List<Build> builds = new ArrayList<>();
+        public List<Build> activeBuilds = new ArrayList<>();
+
         public boolean check;
 
         public boolean active = false; //
     }
 
     public class Violation {
-        public String violation_id;
-        public String violation_name;
+        public String violation_id = "";
+        public String violation_name = "";
     }
 
     public void Parse(JSONObject obj) {
@@ -78,6 +80,8 @@ public class JsonData {
 
             JSONArray projs = obj.getJSONArray("projs");
             this.projs = new ArrayList<>(projs.length());
+            activeProjs = new ArrayList<>();
+
 
             for (int i = 0; i < projs.length(); i++) {
                 JSONObject data = projs.getJSONObject(i);
@@ -105,6 +109,8 @@ public class JsonData {
                 JSONArray builds = data.getJSONArray("builds");
 
                 proj.builds = new ArrayList<>(builds.length());
+                proj.activeBuilds = new ArrayList<>();
+
 
                 for (int k = 0; k < builds.length(); k++) {
                     JSONObject data3 = builds.getJSONObject(k);
@@ -123,14 +129,19 @@ public class JsonData {
                     lat = Math.abs(lat - Latitude);
                     lon = Math.abs(lon - Longitude);
 
-                    if(lat <= 10 && lon <= 10) {
+                    if(lat <= 12 && lon <= 12) {
                         build.active = true;
                         proj.active = true;
+                        proj.activeBuilds.add(build);
                     }
 
                     proj.builds.add(build);
                 }
                 this.projs.add(proj);
+
+                if(proj.active) {
+                    activeProjs.add(proj);
+                }
             }
         } catch (JSONException ignored) {
             try {

@@ -13,7 +13,10 @@ public class ServerWork {
     private static final String TAG = "INWIKE";
 
     private static final String verif_id = "66b457e4-7c02-11e2-9362-001b11b25590";
-    private static final String HOST = "http://192.168.1.35/Inwike/hs/Inwike/ID";
+    //private static final String HOST = "http://192.168.1.35/Inwike/hs/Inwike/ID/";
+    private static final String HOST = "http://46.174.89.208:6060/Inwike/hs/Inwike/ID/";
+
+
     private static final String[] methods =
             {"exec_data","allow_scan","create_violation","list_violation"};
     private static final String UID = "?exec_uid=";

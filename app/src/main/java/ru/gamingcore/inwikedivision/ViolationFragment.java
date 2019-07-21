@@ -17,6 +17,7 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 
 import java.util.ArrayList;
@@ -35,9 +36,7 @@ import static ru.gamingcore.inwikedivision.Activity.MainActivity.WidthPixels;
 public class ViolationFragment extends DialogFragment implements OnClickListener{
     private static final String TAG = "INWIKE";
     public MyService service;
-    private ViolationsAdapter vAdapter;// = new ViolationsAdapter();
-    private Violations2Adapter pAdapter;
-    private Violations3Adapter bAdapter;
+
     private Spinner vSpinner;
     private Spinner pSpinner;
     private Spinner bSpinner;
@@ -46,10 +45,14 @@ public class ViolationFragment extends DialogFragment implements OnClickListener
                              Bundle savedInstanceState) {
         getDialog().setTitle("tittle");
         View v = inflater.inflate(R.layout.violation_fragment, container,false);
-       // v.findViewById(R.id.back_click).setOnClickListener(this);
+        v.findViewById(R.id.save).setOnClickListener(this);
         vSpinner = v.findViewById(R.id.vSpinner);
         pSpinner = v.findViewById(R.id.pSpinner);
         bSpinner = v.findViewById(R.id.bSpinner);
+
+        ViolationsAdapter vAdapter;
+        Violations2Adapter pAdapter;
+        final Violations3Adapter bAdapter;
 
         vAdapter = new ViolationsAdapter(getContext());
         pAdapter = new Violations2Adapter(getContext());
@@ -57,31 +60,7 @@ public class ViolationFragment extends DialogFragment implements OnClickListener
 
         vAdapter.violations = service.jsonData.violations;
 
-
-
-        if(service.jsonData.projs != null) {
-
-            List <JsonData.Proj> proj = new ArrayList<>();
-
-            for (JsonData.Proj p : service.jsonData.projs) {
-                if (p.active) {
-                    proj.add(p);
-                }
-            }
-
-            pAdapter.projs = proj;
-
-            List <JsonData.Build> bld = new ArrayList<>();
-
-            if(service.jsonData.projs.get(0).builds != null) {
-                for (JsonData.Build b : service.jsonData.projs.get(0).builds) {
-                    if (b.active) {
-                        bld.add(b);
-                    }
-                }
-                bAdapter.builds = bld;
-            }
-        }
+        pAdapter.projs = service.jsonData.activeProjs;
 
         vSpinner.setAdapter(vAdapter);
         pSpinner.setAdapter(pAdapter);
@@ -90,18 +69,7 @@ public class ViolationFragment extends DialogFragment implements OnClickListener
         pSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-               // bAdapter.builds.clear();
-                Log.e(TAG,"setted = "+i);
-                List <JsonData.Build> bld = new ArrayList<>();
-
-                for (JsonData.Build b : service.jsonData.projs.get(i).builds) {
-                    if (b.active) {
-                        bld.add(b);
-                    }
-                }
-                bAdapter.builds = bld;
-
-                bAdapter.notifyDataSetInvalidated();
+                bAdapter.builds = service.jsonData.activeProjs.get(i).activeBuilds;
             }
 
             @Override
@@ -111,10 +79,13 @@ public class ViolationFragment extends DialogFragment implements OnClickListener
         });
         return v;
     }
+
     @Override
     public void onClick(View v) {
-     /*   if(v.getId() == R.id.back_click)
-            dismiss();*/
+        if(v.getId() == R.id.save) {
+            Toast.makeText(getContext(),"Нарушение добавлено",Toast.LENGTH_LONG).show();;
+            dismiss();
+        }
     }
 
     @Override

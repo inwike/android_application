@@ -16,5 +16,6 @@
     <string name="comment">Комментарий</string>
     <string name="list_proj">Проекты</string>
     <string name="submit">Добавить</string>
+    <string name="rating">Рейтинг</string>
 
 </resources>
