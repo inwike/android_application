@@ -66,6 +66,7 @@ public class InfoActivity extends AppCompatActivity {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
             pager.postDelayed(new Runnable() {
+
                 @Override
                 public void run() {
                     pagerAdapter.setPosition(i,pager.getCurrentItem() + 1);

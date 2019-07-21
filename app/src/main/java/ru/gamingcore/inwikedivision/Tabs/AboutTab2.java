@@ -48,7 +48,7 @@ class AboutTab2 extends DialogFragment {
     private ListView builds;
 
 
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.about_page_2, container,false);
         exec_name = v.findViewById(R.id.exec_name);
@@ -66,6 +66,7 @@ class AboutTab2 extends DialogFragment {
                @Override
                public void onClick(View view) {
                    Intent intent = new Intent(getContext(), RatingActivity.class);
+                   intent.putExtra("project_name",jsonData.exec_name);
                    startActivity(intent);
                }
            });

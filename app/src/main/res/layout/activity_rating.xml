@@ -33,14 +33,14 @@
         android:layout_marginTop="10dp"
         android:layout_below="@id/a1"
         android:text="Proj name"
-        android:id="@+id/proj_name"
+        android:id="@+id/project_name"
         android:textSize="25sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/a2"
-        android:layout_below="@id/proj_name"
+        android:layout_below="@id/project_name"
         android:text="@string/ciz"
         android:textSize="18sp"
         android:gravity="center"
@@ -50,7 +50,7 @@
 
     <RatingBar
         android:id="@+id/rating1"
-        android:layout_below="@id/proj_name"
+        android:layout_below="@id/project_name"
         android:numStars="3"
         android:layout_marginTop="-10dp"
         android:layout_alignParentEnd="true"
@@ -313,10 +313,13 @@
         android:layout_height="wrap_content" />
 
     <Button
+        android:layout_alignParentBottom="true"
         android:text="@string/save"
         android:background="@android:drawable/btn_default"
         android:layout_marginEnd="20dp"
+        android:onClick="onClick"
         android:layout_marginStart="20dp"
+        android:layout_marginBottom="5dp"
         android:layout_width="match_parent"
         android:layout_height="50dp" />
 
