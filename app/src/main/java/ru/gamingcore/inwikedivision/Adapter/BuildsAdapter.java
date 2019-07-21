@@ -1,6 +1,7 @@
 package ru.gamingcore.inwikedivision.Adapter;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,9 +24,9 @@ public class BuildsAdapter extends BaseAdapter {
 
     public int current = 0;
 
-    public BuildsAdapter(Activity activity) {
-        inflater = activity.getLayoutInflater();
-        listview_selector = activity.getDrawable(R.drawable.listview_selector);
+    public BuildsAdapter(Context context) {
+        inflater = LayoutInflater.from(context);
+        listview_selector = context.getDrawable(R.drawable.listview_selector);
     }
 
     @Override

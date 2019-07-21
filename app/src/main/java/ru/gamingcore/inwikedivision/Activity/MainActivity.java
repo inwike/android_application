@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
@@ -16,17 +17,31 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
+import android.view.WindowManager;
+
+import org.json.JSONObject;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 import ru.gamingcore.inwikedivision.Finger.FingerprintDialog;
 import ru.gamingcore.inwikedivision.Service.MyService;
 import ru.gamingcore.inwikedivision.R;
+import ru.gamingcore.inwikedivision.ViolationFragment;
+import ru.gamingcore.inwikedivision.network.ServerWork;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG ="INWIKE";
     private static int PERMISSION_REQUEST_CODE = 123456;
+    public static int primaryColor;
+    public static float WidthPixels;
+    public static float HeightPixels;
+
 
     private LocationManager locationManager;
     private MyLocationListener locationListener;
@@ -35,6 +50,10 @@ public class MainActivity extends AppCompatActivity {
     private ServiceConnection sConn = new ServiceConnection() {
         public void onServiceConnected(ComponentName name, IBinder binder) {
             service = ((MyService.LocalBinder)binder).getService();
+            service.serverWork.setListener(listener);
+            service.serverWork.getVio();
+
+
             if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 requestPermissions(
                         new String[] {
@@ -58,6 +77,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.clear_layout);
+        primaryColor = getColor(R.color.colorPrimary);
+        Display d = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+
+        DisplayMetrics realDisplayMetrics = new DisplayMetrics();
+        d.getRealMetrics(realDisplayMetrics);
+        WidthPixels = realDisplayMetrics.widthPixels;
+        HeightPixels = realDisplayMetrics.heightPixels;
 
         Intent intent = new Intent(this, MyService.class);
         bindService(intent, sConn, BIND_AUTO_CREATE);
@@ -85,8 +111,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClick(View view) {
-        Intent intent = new Intent(this, QRActivity.class);
-        startActivity(intent);
+        if(view.getId() == R.id.read) {
+            Intent intent = new Intent(this, QRActivity.class);
+            startActivity(intent);
+        } else if(view.getId() == R.id.error){
+            ViolationFragment  violation = new ViolationFragment();
+            violation.service = service;
+            violation.show(getSupportFragmentManager(), "Violation");
+        }
     }
 
     private class MyLocationListener implements LocationListener {
@@ -124,5 +156,18 @@ public class MainActivity extends AppCompatActivity {
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
+
+    private ServerWork.ServerListener listener = new ServerWork.ServerListener() {
+
+        @Override
+        public void onFinished(JSONObject obj) {
+            service.jsonData.Parse(obj);
+        }
+
+        @Override
+        public void onError() {
+
+        }
+    };
 
 }

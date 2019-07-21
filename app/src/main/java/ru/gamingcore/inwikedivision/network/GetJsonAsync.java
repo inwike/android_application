@@ -53,6 +53,7 @@ public  class GetJsonAsync extends AsyncTask<String,Void, String> {
 
             if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
                 // все ок
+                Log.e(TAG,"200/OK");
             } else {
                 Log.d(TAG, "Error "+connection.getResponseCode());
                 if (listener != null) {

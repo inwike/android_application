@@ -44,8 +44,9 @@ class AboutTab extends androidx.fragment.app.DialogFragment {
         Exec_foto = v.findViewById(R.id.Exec_foto);
 
         if(getActivity()!= null) {
-            projAdapter = new ProjAdapter(getActivity());
+            projAdapter = new ProjAdapter( getContext());
         }
+
 
         exec_name.setText(jsonData.exec_name);
 

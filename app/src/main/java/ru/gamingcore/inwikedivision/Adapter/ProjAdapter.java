@@ -1,6 +1,7 @@
 package ru.gamingcore.inwikedivision.Adapter;
 
 import android.app.Activity;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,8 +24,8 @@ public class ProjAdapter extends BaseAdapter {
 
     public int current = 0;
 
-    public ProjAdapter(Activity activity) {
-        inflater = activity.getLayoutInflater();
+    public ProjAdapter(Context context) {
+        inflater = LayoutInflater.from(context);
     }
 
     @Override

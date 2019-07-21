@@ -18,12 +18,24 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
+    <style name="MyAnimation.Window" parent="@android:style/Animation.Activity">
+        <item name="android:windowEnterAnimation">@anim/fragment_anim_in</item>
+        <item name="android:windowExitAnimation">@anim/fragment_anim_out</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
     <style name="DialogStyle" parent="Base.Theme.AppCompat.Dialog">
         <item name="android:windowDrawsSystemBarBackgrounds">false</item>
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@drawable/dialog_frame_shadow</item>
+        <item name="android:windowAnimationStyle">@style/MyAnimation.Window</item>
     </style>
 
 

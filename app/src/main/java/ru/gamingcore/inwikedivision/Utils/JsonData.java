@@ -14,8 +14,11 @@ import java.util.List;
 
 public class JsonData {
     private static final String TAG = "INWIKE";
+
     public double Latitude = 0;
     public double Longitude = 0;
+
+    public List<Violation> violations;
 
 
     public String exec_name;
@@ -24,10 +27,12 @@ public class JsonData {
     public String org_name;
     public List<Proj> projs;
 
+
     public Bitmap Exec_foto = null;
 
 
     public class Build {
+        public String id_builds;
         public String name_builds;
         public String address;
         public String latitude;
@@ -51,6 +56,13 @@ public class JsonData {
         public List<Allowance> allowances;
         public List<Build> builds;
         public boolean check;
+
+        public boolean active = false; //
+    }
+
+    public class Violation {
+        public String violation_id;
+        public String violation_name;
     }
 
     public void Parse(JSONObject obj) {
@@ -96,8 +108,8 @@ public class JsonData {
 
                 for (int k = 0; k < builds.length(); k++) {
                     JSONObject data3 = builds.getJSONObject(k);
-
                     Build build = new Build();
+                    build.id_builds = data3.getString("id_builds");
 
                     build.address = data3.getString("address");
                     build.name_builds = data3.getString("name_builds");
@@ -111,25 +123,33 @@ public class JsonData {
                     lat = Math.abs(lat - Latitude);
                     lon = Math.abs(lon - Longitude);
 
-                    Log.e(TAG,"Latitude = "+Latitude+" Longitude = "+Longitude);
-                    Log.e(TAG,"lat = "+lat+" lon = "+lon);
-
-
                     if(lat <= 10 && lon <= 10) {
                         build.active = true;
+                        proj.active = true;
                     }
-
-
 
                     proj.builds.add(build);
                 }
                 this.projs.add(proj);
             }
-            Log.e(TAG,"Fully readed");
+        } catch (JSONException ignored) {
+            try {
+                JSONArray violations = obj.getJSONArray("violation_list");
+                this.violations = new ArrayList<>(violations.length());
 
-        } catch (JSONException e) {
-            Log.e(TAG,"JSONException "+e.getLocalizedMessage());
+                for (int j = 0; j < violations.length(); j++) {
+                    JSONObject data = violations.getJSONObject(j);
+                    Violation violation = new Violation();
+                    violation.violation_id = data.getString("violation_id");
+                    violation.violation_name = data.getString("violation_name");
+                    this.violations.add(violation);
+                }
+
+            } catch (JSONException e) {
+                Log.e(TAG,"JSONException "+e.getLocalizedMessage());
+            }
         }
+
     }
 
 }

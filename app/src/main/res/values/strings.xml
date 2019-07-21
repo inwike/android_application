@@ -11,5 +11,10 @@
     <string name="stop_date">Действителен до:</string>
     <string name="not_avail">Допуск отсутствует!</string>
     <string name="scan">Скан допуска</string>
+    <string name="violation">Список нарушений</string>
+    <string name="build">Список объектов</string>
+    <string name="comment">Комментарий</string>
+    <string name="list_proj">Проекты</string>
+    <string name="submit">Добавить</string>
 
 </resources>

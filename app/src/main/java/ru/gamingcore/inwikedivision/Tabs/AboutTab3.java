@@ -1,6 +1,7 @@
 package ru.gamingcore.inwikedivision.Tabs;
 
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,8 @@ import androidx.fragment.app.DialogFragment;
 import ru.gamingcore.inwikedivision.Utils.JsonData;
 import ru.gamingcore.inwikedivision.R;
 import ru.gamingcore.inwikedivision.Service.MyService;
+
+import static ru.gamingcore.inwikedivision.Activity.MainActivity.primaryColor;
 
 class AboutTab3 extends DialogFragment {
 
@@ -38,6 +41,7 @@ class AboutTab3 extends DialogFragment {
     private ImageView check2;
     private View green;
     private View red;
+
 
 
 
@@ -82,7 +86,7 @@ class AboutTab3 extends DialogFragment {
 
     @Override
     public void onResume() {
-        if(getDialog()!=null) {
+        if(getDialog() != null) {
             Window window = getDialog().getWindow();
             if (window != null) {
                 WindowManager.LayoutParams params = window.getAttributes();
@@ -119,13 +123,12 @@ class AboutTab3 extends DialogFragment {
         else
             check.setImageResource(R.drawable.green);
 
-
-
         if(!allowance.check) {
             check2.setImageResource(R.drawable.red);
-        } else {
-            check2.setImageResource(R.drawable.green);
             stop_date.setTextColor(0xFFFF0000);
+        } else {
+            stop_date.setTextColor(primaryColor);
+            check2.setImageResource(R.drawable.green);
         }
 
         if(!allowance.avail) {

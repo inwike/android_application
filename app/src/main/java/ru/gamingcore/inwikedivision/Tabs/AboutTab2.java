@@ -56,9 +56,9 @@ class AboutTab2 extends DialogFragment {
         proj_name = v.findViewById(R.id.proj_name);
         check = v.findViewById(R.id.check);
 
-        if(getActivity()!= null) {
-            allowsAdapter = new AllowsAdapter(getActivity());
-            buildsAdapter = new BuildsAdapter(getActivity());
+        if(getContext()!= null) {
+            allowsAdapter = new AllowsAdapter(getContext());
+            buildsAdapter = new BuildsAdapter(getContext());
         }
 
         exec_name.setText(jsonData.exec_name);

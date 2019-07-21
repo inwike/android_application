@@ -146,9 +146,6 @@
             android:textSize="16sp" />
 
     </RelativeLayout>
-
-
-
         <Button
             android:id="@+id/btn"
             android:text="@string/scan"
